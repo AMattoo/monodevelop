@@ -23,6 +23,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using Mono.Addins;
 
 namespace MonoDevelop.Core.FeatureConfiguration
 {
@@ -30,14 +31,14 @@ namespace MonoDevelop.Core.FeatureConfiguration
 	{
 		public string Name { get; set; }
 
-		public FeatureSwitchCondition Condition { get; set; }
+		public ConditionType Condition { get; set; }
 
-		public bool IsEnabled => Condition?.Evaluate () ?? true;
+		public bool IsEnabled => Condition?.Evaluate (null) ?? true;
 	}
 
 	public static class FeatureSwitchService
 	{
-		public static FeatureSwitch RegisterFeature (string name, FeatureSwitchCondition condition)
+		public static FeatureSwitch RegisterFeature (string name, ConditionType condition)
 		{
 			return new FeatureSwitch { Name = name, Condition = condition };
 		}

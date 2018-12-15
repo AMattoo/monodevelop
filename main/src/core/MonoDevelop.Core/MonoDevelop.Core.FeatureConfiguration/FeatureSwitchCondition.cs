@@ -26,21 +26,14 @@
 
 using System;
 using System.Collections.Immutable;
+using Mono.Addins;
 
 namespace MonoDevelop.Core.FeatureConfiguration
 {
 	/// <summary>
-	/// Base class for feature switch conditions.
-	/// </summary>
-	public abstract class FeatureSwitchCondition
-	{
-		internal abstract bool Evaluate ();
-	}
-
-	/// <summary>
 	/// Base class for version-based checks
 	/// </summary>
-	public abstract class VersionBasedFeatureSwitchCondition : FeatureSwitchCondition
+	public abstract class VersionBasedFeatureSwitchCondition : ConditionType
 	{
 		protected static Version CurrentVersion = Version.Parse (BuildInfo.FullVersion);
 	}
@@ -63,10 +56,10 @@ namespace MonoDevelop.Core.FeatureConfiguration
 			versionToCheck = version;
 		}
 
-		internal override bool Evaluate () => CurrentVersion >= versionToCheck;
+		public override bool Evaluate (NodeElement conditionNode) => CurrentVersion >= versionToCheck;
 	}
 
-	public class EnvVarExistsFeatureSwitchCondition : FeatureSwitchCondition
+	public class EnvVarExistsFeatureSwitchCondition : ConditionType
 	{
 		readonly string nameToCheck, valueToCheck;
 
@@ -76,7 +69,7 @@ namespace MonoDevelop.Core.FeatureConfiguration
 			valueToCheck = value;
 		}
 
-		internal override bool Evaluate ()
+		public override bool Evaluate (NodeElement conditionNode)
 		{
 			if (!string.IsNullOrEmpty (nameToCheck)) {
 				var v = Environment.GetEnvironmentVariable (nameToCheck);
@@ -90,23 +83,23 @@ namespace MonoDevelop.Core.FeatureConfiguration
 	/// <summary>
 	/// Allows aggregation of several switch conditions into a single condition.
 	/// </summary>
-	public class AggregatedFeatureSwitchCondition : FeatureSwitchCondition
+	public class AggregatedFeatureSwitchCondition : ConditionType
 	{
-		readonly ImmutableArray<FeatureSwitchCondition> conditions;
+		readonly ImmutableArray<ConditionType> conditions;
 		readonly bool allMustPass;
 
-		public AggregatedFeatureSwitchCondition (bool allMustPass, params FeatureSwitchCondition [] conditions)
+		public AggregatedFeatureSwitchCondition (bool allMustPass, params ConditionType [] conditions)
 		{
 			this.conditions = conditions.ToImmutableArray ();
 			this.allMustPass = allMustPass;
 		}
 
-		internal override bool Evaluate ()
+		public override bool Evaluate (NodeElement conditionNode)
 		{
 			bool result = false;
 
 			foreach (var cond in conditions) {
-				bool r = cond.Evaluate ();
+				bool r = cond.Evaluate (conditionNode);
 				if (allMustPass && !r) return false;
 				if (!allMustPass && r) return true;
 

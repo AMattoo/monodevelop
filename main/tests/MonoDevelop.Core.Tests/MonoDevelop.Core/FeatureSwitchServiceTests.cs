@@ -39,7 +39,7 @@ namespace MonoDevelop.Core
 		public void CanCheckForVersionCondition (string version, bool expected)
 		{
 			var cond = new VersionGreaterThanFeatureSwitchCondition (version);
-			Assert.That (cond.Evaluate (), Is.EqualTo (expected));
+			Assert.That (cond.Evaluate (null), Is.EqualTo (expected));
 		}
 
 		[TestCase ("FeatureSwitchServiceTests", null)]
@@ -49,16 +49,16 @@ namespace MonoDevelop.Core
 			var cond = new EnvVarExistsFeatureSwitchCondition (variable, value);
 
 			// Check it returns false without the env var defined
-			Assert.False (cond.Evaluate ());
+			Assert.False (cond.Evaluate (null));
 
 			// Check the var exists and value is correct
 			Environment.SetEnvironmentVariable (variable, value ?? "True");
-			Assert.True (cond.Evaluate ());
+			Assert.True (cond.Evaluate (null));
 
 			// Check the value is compared
 			if (!string.IsNullOrEmpty (value)) {
 				Environment.SetEnvironmentVariable (variable, value.Insert (0, "insert"));
-				Assert.False (cond.Evaluate ());
+				Assert.False (cond.Evaluate (null));
 			}
 		}
 
@@ -72,18 +72,18 @@ namespace MonoDevelop.Core
 				new VersionGreaterThanFeatureSwitchCondition (BuildInfo.FullVersion),
 				new EnvVarExistsFeatureSwitchCondition ("FeatureSwitchServiceTests", null)
 			);
-			Assert.True (cond.Evaluate ());
+			Assert.True (cond.Evaluate (null));
 
 			// Check when one condition is not met
 			Environment.SetEnvironmentVariable ("FeatureSwitchServiceTests", null);
-			Assert.False (cond.Evaluate ());
+			Assert.False (cond.Evaluate (null));
 
 			// Check when any condition is met
 			cond = new AggregatedFeatureSwitchCondition (false,
 				new VersionGreaterThanFeatureSwitchCondition (BuildInfo.FullVersion),
 				new EnvVarExistsFeatureSwitchCondition ("FeatureSwitchServiceTests", null)
 			);
-			Assert.True (cond.Evaluate ());
+			Assert.True (cond.Evaluate (null));
 		}
 
 		[TestCase (BuildInfo.FullVersion, true)]
