@@ -43,6 +43,10 @@ namespace MonoDevelop.Core.FeatureConfiguration
 	internal class VisualBasicSupportCondition : ConditionType
 	{
 		// FIXME!!
-		public override bool Evaluate (NodeElement conditionNode) => BrandingService.ApplicationName.Contains ("MonoDevelop");
+		public override bool Evaluate (NodeElement conditionNode)
+		{
+			return Environment.GetEnvironmentVariables ().Contains ("MD_ENABLE_VISUALBASIC_SUPPORT")
+				|| BrandingService.ApplicationName.Contains ("MonoDevelop");
+		}
 	}
 }
