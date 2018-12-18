@@ -49,7 +49,7 @@ namespace MonoDevelop.DotNetCore.Tests
 			}
 
 			// Set environment variable to enable VB.NET support
-			Environment.SetEnvironmentVariable ("MD_ENABLE_VISUALBASIC_SUPPORT", "true");
+			Environment.SetEnvironmentVariable ("MD_FEATURES_ENABLED", "VBNetDotnetCoreTemplates");
 		}
 
 		[Test]

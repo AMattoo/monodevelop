@@ -1,10 +1,10 @@
 //
-// GlobalFeatures.cs
+// IFeatureSwitchCheck.cs
 //
 // Author:
 //       Rodrigo Moya <rodrigo.moya@xamarin.com>
 //
-// Copyright (c) 2018 
+// Copyright (c) 2018 Microsoft Corp. (http://microsoft.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,31 +23,12 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
 using System;
-using Mono.Addins;
-using System.Linq;
 
 namespace MonoDevelop.Core.FeatureConfiguration
 {
-	internal class FeatureSwitchCondition : ConditionType
+	public interface IFeatureSwitchCheck
 	{
-		public override bool Evaluate (NodeElement conditionNode)
-		{
-			var featureName = conditionNode.GetAttribute ("name");
-			if (String.IsNullOrEmpty (featureName)) {
-				return true;
-			}
-
-			if (Environment.GetEnvironmentVariable ("MD_FEATURES_ENABLED")
-				.Split (';')
-				.Contains (featureName)) {
-				return true;
-			}
-
-			// Fallback to ask extensions, enabling by default
-			return !(AddinManager.GetExtensionObjects<IFeatureSwitchCheck> ("MonoDevelop.Core.FeatureConfiguration.IFeatureSwitchCheck")?
-				.Any (x => !x.IsFeatureEnabled (featureName)) ?? true);
-		}
+		bool IsFeatureEnabled (string featureName);
 	}
 }

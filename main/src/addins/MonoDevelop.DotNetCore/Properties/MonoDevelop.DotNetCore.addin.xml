@@ -95,7 +95,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetCore21=true"
 			category="netcore/app/general"/>
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				id="Microsoft.Common.Console.VisualBasic"
 				templateId="Microsoft.Common.Console.VisualBasic.2.1"
@@ -133,7 +133,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetCore22=true"
 			category="netcore/app/general"/>
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				id="Microsoft.Common.Console.VisualBasic"
 				templateId="Microsoft.Common.Console.VisualBasic.2.2"
@@ -229,7 +229,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetStandard20=true"
 			category="multiplat/library/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				_overrideName=".NET Standard Library"
 				_overrideDescription="Creates a new .NET Standard class library project."
@@ -270,7 +270,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetStandard20=true"
 			category="multiplat/library/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				_overrideName=".NET Standard Library"
 				_overrideDescription="Creates a new .NET Standard class library project."
@@ -366,7 +366,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetStandard20=true"
 			category="netcore/library/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				_overrideName=".NET Standard Library"
 				_overrideDescription="Creates a new .NET Standard class library project."
@@ -407,7 +407,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetStandard20=true"
 			category="netcore/library/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				_overrideName=".NET Standard Library"
 				_overrideDescription="Creates a new .NET Standard class library project."
@@ -502,7 +502,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetCore21=true"
 			category="netcore/library/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				_overrideName="Class Library"
 				_overrideDescription="Creates a new .NET Core class library project."
@@ -546,7 +546,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetCore22=true"
 			category="netcore/library/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				_overrideName="Class Library"
 				_overrideDescription="Creates a new .NET Core class library project."
@@ -674,7 +674,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetCore21=true"
 			category="netcore/test/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				id="Microsoft.Test.xUnit.VisualBasic"
 				templateId="Microsoft.Test.xUnit.VisualBasic.2.1"
@@ -710,7 +710,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetCore21=true"
 			category="netcore/test/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				id="Microsoft.Test.MSTest.VisualBasic"
 				templateId="Microsoft.Test.MSTest.VisualBasic.2.1"
@@ -748,7 +748,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetCore22=true"
 			category="netcore/test/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				id="Microsoft.Test.xUnit.VisualBasic"
 				templateId="Microsoft.Test.xUnit.VisualBasic.2.2"
@@ -784,7 +784,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetCore22=true"
 			category="netcore/test/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				id="Microsoft.Test.MSTest.VisualBasic"
 				templateId="Microsoft.Test.MSTest.VisualBasic.2.2"
@@ -820,7 +820,7 @@
 			wizard="MonoDevelop.DotNetCore.ProjectTemplateWizard"
 			condition="UseNetCore21=true"
 			category="netcore/test/general" />
-		<Condition id="VisualBasicSupport">
+		<Condition id="FeatureSwitchCondition" name="VBNetDotnetCoreTemplates">
 			<Template
 				id="NUnit3.DotNetNew.Template.VisualBasic"
 				templateId="NUnit3.DotNetNew.Template.VisualBasic"
